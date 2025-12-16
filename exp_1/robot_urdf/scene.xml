@@ -1,0 +1,307 @@
+<mujoco model="nova_dual_scene_colored">
+  <!-- units: m, kg, s; angles in radians -->
+  <compiler angle="radian" coordinate="local" meshdir=""/>
+  <size nuserdata="0" nuser_actuator="0" nconmax="500" njmax="2000"/>
+  <option gravity="0 0 -9.81" integrator="RK4" timestep="0.002"
+          cone="pyramidal" impratio="5" tolerance="1e-8"/>
+
+  <visual>
+    <quality shadowsize="2048" offsamples="8"/>
+    <rgba haze="0.1 0.1 0.1 1" />
+  </visual>
+
+  <default>
+    <geom type="mesh" contype="1" conaffinity="1" friction="1 0.005 0.0001"/>
+    <joint type="hinge" damping="0.05" limited="true"/>
+    <motor ctrllimited="true" ctrlrange="-1 1" gear="1"/>
+    <light cutoff="100" exponent="1" diffuse="0.8 0.8 0.8" specular="0.2 0.2 0.2" ambient="0.2 0.2 0.2"/>
+  </default>
+
+  <!-- ============ Assets (textures, materials, meshes) ============ -->
+  <asset>
+    <!-- Ground material -->
+    <texture name="texplane" type="2d" builtin="checker" width="512" height="512"
+             rgb1="0.82 0.84 0.87" rgb2="0.92 0.93 0.95"/>
+    <material name="matplane" texture="texplane" texrepeat="4 4" reflectance="0.1"/>
+
+    <!-- NEW materials for colorized meshes -->
+    <material name="mat_n2" rgba="0.165 0.616 0.561 1" specular="0.40" shininess="0.30" reflectance="0.05"/>
+    <material name="mat_n5" rgba="0.906 0.435 0.318 1" specular="0.40" shininess="0.30" reflectance="0.05"/>
+    <material name="mat_ee" rgba="0.80 0.80 0.82 1"  specular="0.30" shininess="0.70" reflectance="0.10"/>
+
+    <!-- nova2 meshes -->
+    <mesh name="n2_base_link" file="meshes/nova2/base_link.STL"/>
+    <mesh name="n2_Link1"     file="meshes/nova2/Link1.STL"/>
+    <mesh name="n2_Link2"     file="meshes/nova2/Link2.STL"/>
+    <mesh name="n2_Link3"     file="meshes/nova2/Link3.STL"/>
+    <mesh name="n2_Link4"     file="meshes/nova2/Link4.STL"/>
+    <mesh name="n2_Link5"     file="meshes/nova2/Link5.STL"/>
+    <mesh name="n2_Link6"     file="meshes/nova2/Link6.STL"/>
+
+    <!-- EE meshes (shared) -->
+    <mesh name="ee_link1" file="meshes/ee_link/ee_link1.STL" scale="0.001 0.001 0.001"/>
+    <mesh name="ee_link2" file="meshes/ee_link/ee_link2.STL" scale="0.001 0.001 0.001"/>
+    <mesh name="ee_link3" file="meshes/ee_link/ee_link3.STL" scale="0.001 0.001 0.001"/>
+
+    <!-- nova5 meshes -->
+    <mesh name="n5_base_link" file="meshes/nova5/base_link.STL"/>
+    <mesh name="n5_Link1"     file="meshes/nova5/Link1.STL"/>
+    <mesh name="n5_Link2"     file="meshes/nova5/Link2.STL"/>
+    <mesh name="n5_Link3"     file="meshes/nova5/Link3.STL"/>
+    <mesh name="n5_Link4"     file="meshes/nova5/Link4.STL"/>
+    <mesh name="n5_Link5"     file="meshes/nova5/Link5.STL"/>
+    <mesh name="n5_Link6"     file="meshes/nova5/Link6.STL"/>
+  </asset>
+
+  <!-- ============ World / Scene ============ -->
+  <worldbody>
+
+    <!-- Ground plane -->
+    <geom name="ground" type="plane" size="5 5 0.1" pos="0 0 0" material="matplane"/>
+
+    <!-- Lights -->
+    <light name="top_light" pos="0.45 0 2.2" dir="0 0 -1" directional="true"/>
+    <light name="fill_light" pos="-1.0 -1.2 1.2" dir="0.6 0.6 -1" directional="true" diffuse="0.6 0.6 0.6"/>
+
+    <!-- Cameras -->
+    <camera name="front"    pos="1.80 0.00 0.70" euler="0 0 3.1416"/>  <!-- looks toward -x -->
+    <camera name="top"      pos="0.45 0.00 2.00" euler="-1.5708 0 0"/>
+    <camera name="iso"      pos="1.40 -1.10 1.00" euler="-0.35 0 2.45"/>
+
+    <!-- ======================== nova2 ======================== -->
+    <body name="nova2base_link" pos="0 0 0">
+      <inertial
+        pos="1.31739324853774e-05 -7.84959718585273e-06 0.0647773077977383"
+        mass="0.939873286768969"
+        fullinertia="0.00191682867137382 0.00192279468074328 0.00127269960160789 -3.45738044468349e-07 7.09345652971545e-07 -4.56838232777704e-07"/>
+      <geom mesh="n2_base_link" material="mat_n2"/>
+
+      <!-- joint1 -->
+      <body name="nova2Link1" pos="0 0 0.2234">
+        <inertial
+          pos="-5.44523391156536e-07 -0.0218722568945782 -0.0236239644661121"
+          mass="0.803371401390743"
+          fullinertia="0.00167952903521413 0.00146965832921226 0.00103706598237737 1.54449368288654e-07 6.95728401748556e-08 0.000442022256560709"/>
+        <joint name="nova2joint1" axis="0 0 1" range="-6.28 6.28"/>
+        <geom mesh="n2_Link1" material="mat_n2"/>
+
+        <!-- joint2 -->
+        <body name="nova2Link2" pos="0 0 0" euler="1.5708 1.5708 0">
+          <inertial
+            pos="-0.150313750410422 4.18877523206172e-06 0.0931448460647906"
+            mass="1.57815975340995"
+            fullinertia="0.00156674973214016 0.0216397042193888 0.0217363605210336 -1.57289561886805e-07 -0.00115240117121709 -1.09920891390281e-07"/>
+          <joint name="nova2joint2" axis="0 0 1" range="-3.14 3.14"/>
+          <geom mesh="n2_Link2" material="mat_n2"/>
+
+          <!-- joint3 -->
+          <body name="nova2Link3" pos="-0.28 0 0">
+            <inertial
+              pos="-0.118295307270688 3.91200533585901e-06 0.0113008075933966"
+              mass="0.99867391089996"
+              fullinertia="0.000775712315283709 0.00938204904571472 0.00940115973618697 4.7133171421654e-08 0.000543588636158171 6.82619728416736e-08"/>
+            <joint name="nova2joint3" axis="0 0 1" range="-2.79 2.79"/>
+            <geom mesh="n2_Link3" material="mat_n2"/>
+
+            <!-- joint4 -->
+            <body name="nova2Link4" pos="-0.22501 0 0.1175" euler="0 0 -1.5708">
+              <inertial
+                pos="-7.47431367277975e-06 -0.0226550273917204 -0.0204586561908531"
+                mass="0.441608812891546"
+                fullinertia="0.000641172450255966 0.000455371502301378 0.000482718528361731 1.23887771284186e-08 3.02489770721575e-08 0.000213282779675717"/>
+              <joint name="nova2joint4" axis="0 0 1" range="-6.28 6.28"/>
+              <geom mesh="n2_Link4" material="mat_n2"/>
+
+              <!-- joint5 -->
+              <body name="nova2Link5" pos="0 -0.12 0" euler="1.5708 0 0">
+                <inertial
+                  pos="-2.62723419601498e-06 0.00191303345902123 -0.00761123061599434"
+                  mass="0.574835130262751"
+                  fullinertia="0.000663176880312698 0.000397520642705227 0.000641156755381468 1.50480808241957e-08 1.31860791104645e-08 -0.000120263783985693"/>
+                <joint name="nova2joint5" axis="0 0 1" range="-6.28 6.28"/>
+                <geom mesh="n2_Link5" material="mat_n2"/>
+
+                <!-- joint6 -->
+                <body name="nova2Link6" pos="0 0.088004 0" euler="-1.5708 0 0">
+                  <inertial
+                    pos="-4.63325246499096e-07 -4.92709726822582e-05 -0.0196921496196789"
+                    mass="0.124247087839584"
+                    fullinertia="4.97044850239183e-05 4.99145981166397e-05 7.67222809720147e-05 1.38276337649473e-11 -2.68970069169078e-11 5.03763611900752e-08"/>
+                  <joint name="nova2joint6" axis="0 0 1" range="-6.28 6.28"/>
+                  <geom mesh="n2_Link6" material="mat_n2"/>
+
+                  <!-- EE stack -->
+                  <body name="nova2ee_link1" pos="0 0 0">
+                    <inertial
+                      pos="-2.05563488e-06 -9.56315752e-04 2.95134749e+00"
+                      mass="0.1"
+                      fullinertia="13360718.1 13359504.3 26537205.3 0.453392239 0.00147831178 0.851170136"/>
+                    <geom mesh="ee_link1" material="mat_ee"/>
+
+                    <body name="nova2ee_link2" pos="0 0 0.006">
+                      <inertial
+                        pos="-8.13148666e-07 4.02922989e-07 8.03955715e+00"
+                        mass="0.1"
+                        fullinertia="23645378.9 20114637.6 38718284.5 -0.0789335537 0.490047829 -0.568178813"/>
+                      <geom mesh="ee_link2" material="mat_ee"/>
+
+                      <body name="nova2ee_link3" pos="0 0 0.007">
+                        <inertial
+                          pos="-0.27314499 -0.14913833 -116714.67571645"
+                          mass="0.1"
+                          fullinertia="28393799.87905025 29444930.6702261 40849960.45267854 79327.39879695 -116714.57666305 -69128.80589473"/>
+                        <geom mesh="ee_link3" material="mat_ee"/>
+                        <!-- EE site marker -->
+                        <site name="n2_ee" type="sphere" size="0.01" rgba="1 0 0 1" pos="0 0 0"/>
+                      </body>
+                    </body>
+                  </body>
+
+                </body>
+              </body>
+            </body>
+          </body>
+        </body>
+      </body>
+    </body>
+
+    <!-- ======================== nova5 (shifted base) ======================== -->
+    <body name="nova5base_link" pos="0.9035 -0.003 0">
+      <inertial
+        pos="6.56698714338847e-06 2.73052159273858e-06 0.0698223124889706"
+        mass="1.3106443915978"
+        fullinertia="0.00308109148952278 0.00309758743296662 0.00232835367593981 -4.0369958400766e-08 5.2607663395944e-07 -6.37484696538659e-09"/>
+      <geom mesh="n5_base_link" material="mat_n5"/>
+
+      <!-- joint1 -->
+      <body name="nova5Link1" pos="0 0 0.240000000000178">
+        <inertial
+          pos="9.18642704220017e-06 -0.021770784235076 -0.0261833991373472"
+          mass="1.08090940330212"
+          fullinertia="0.00265963193119309 0.00247342331575097 0.00164737186015792 1.85196348994647e-07 -3.27720040926316e-07 0.000661331129337329"/>
+        <joint name="nova5joint1" axis="0 0 1" range="-6.28 6.28"/>
+        <geom mesh="n5_Link1" material="mat_n5"/>
+
+        <!-- joint2 -->
+        <body name="nova5Link2" pos="0 0 0" euler="-1.57080287682252 1.53586622836832 3.14159265358979">
+          <inertial
+            pos="-0.19933810729628 -0.00696463483971123 0.109208661556353"
+            mass="2.54585370113969"
+            fullinertia="0.00285193319464959 0.0636767872390402 0.0643005121111712 -0.00212784400881843 -0.00109906472415148 -3.83872488712299e-05"/>
+          <joint name="nova5joint2" axis="0 0 1" range="-3.14 3.14"/>
+          <geom mesh="n5_Link2" material="mat_n5"/>
+
+          <!-- joint3 -->
+          <body name="nova5Link3" pos="-0.399756009268664 -0.0139690033141953 0">
+            <inertial
+              pos="-0.152357289724291 -0.0053571688729055 0.0198991511385547"
+              mass="1.40745649848125"
+              fullinertia="0.00100801309674517 0.0231741793950995 0.02359962285525 -0.00077546601599374 4.43267247578911e-05 1.31338010910521e-06"/>
+            <joint name="nova5joint3" axis="0 0 1" range="-2.79 2.79"/>
+            <geom mesh="n5_Link3" material="mat_n5"/>
+
+            <!-- joint4 -->
+            <body name="nova5Link4" pos="-0.329798707647103 -0.0115244277211674 0.134999532858734" euler="0 0 -1.53586622840712">
+              <inertial
+                pos="-6.37112093033953e-06 -0.0227590499933018 -0.0202381689250349"
+                mass="0.439666284541787"
+                fullinertia="0.000634738696193051 0.00045014395177395 0.000480311391216564 1.33529119545257e-08 2.91412587537874e-08 0.000210919680187578"/>
+              <joint name="nova5joint4" axis="0 0 1" range="-6.28 6.28"/>
+              <geom mesh="n5_Link4" material="mat_n5"/>
+
+              <!-- joint5 -->
+              <body name="nova5Link5" pos="0 -0.12 0" euler="1.5708 0 0">
+                <inertial
+                  pos="-1.27925890990664e-06 0.00190911597991161 -0.0076111865696753"
+                  mass="0.574835130260071"
+                  fullinertia="0.000663176880523558 0.000397520749670404 0.000641156648195347 1.30179448329138e-08 1.22670358756949e-08 -0.00012026389265228"/>
+                <joint name="nova5joint5" axis="0 0 1" range="-6.28 6.28"/>
+                <geom mesh="n5_Link5" material="mat_n5"/>
+
+                <!-- joint6 -->
+                <body name="nova5Link6" pos="0 0.088328 0" euler="-1.5708 0 0">
+                  <inertial
+                    pos="1.5476173180832e-06 0.000151598525687691 -0.0194592287865595"
+                    mass="0.129679940383395"
+                    fullinertia="5.02803124561327e-05 5.05400746124736e-05 7.7863015024978e-05 6.27222112028976e-11 3.5128727780266e-12 5.0343678900728e-08"/>
+                  <joint name="nova5joint6" axis="0 0 1" range="-6.28 6.28"/>
+                  <geom mesh="n5_Link6" material="mat_n5"/>
+
+                  <!-- EE stack -->
+                  <body name="nova5ee_link1" pos="0 0 0">
+                    <inertial
+                      pos="-2.05563488e-06 -9.56315752e-04 2.95134749e+00"
+                      mass="0.1"
+                      fullinertia="13360718.1 13359504.3 26537205.3 0.453392239 0.00147831178 0.851170136"/>
+                    <geom mesh="ee_link1" material="mat_ee"/>
+
+                    <body name="nova5ee_link2" pos="0 0 0.006">
+                      <inertial
+                        pos="-8.13148666e-07 4.02922989e-07 8.03955715e+00"
+                        mass="0.1"
+                        fullinertia="23645378.9 20114637.6 38718284.5 -0.0789335537 0.490047829 -0.568178813"/>
+                      <geom mesh="ee_link2" material="mat_ee"/>
+
+                      <body name="nova5ee_link3" pos="0 0 0.007">
+                        <inertial
+                          pos="-0.27314499 -0.14913833 -116714.67571645"
+                          mass="0.1"
+                          fullinertia="28393799.87905025 29444930.6702261 40849960.45267854 79327.39879695 -116714.57666305 -69128.80589473"/>
+                        <geom mesh="ee_link3" material="mat_ee"/>
+                        <!-- EE site marker -->
+                        <site name="n5_ee" type="sphere" size="0.01" rgba="0 0 1 1" pos="0 0 0"/>
+                      </body>
+                    </body>
+                  </body>
+
+                </body>
+              </body>
+            </body>
+          </body>
+        </body>
+      </body>
+    </body>
+  </worldbody>
+
+  <!-- ============ Actuators (torque motors) ============ -->
+  <actuator>
+    <!-- nova2 -->
+    <motor name="m_nova2joint1" joint="nova2joint1"/>
+    <motor name="m_nova2joint2" joint="nova2joint2"/>
+    <motor name="m_nova2joint3" joint="nova2joint3"/>
+    <motor name="m_nova2joint4" joint="nova2joint4"/>
+    <motor name="m_nova2joint5" joint="nova2joint5"/>
+    <motor name="m_nova2joint6" joint="nova2joint6"/>
+    <!-- nova5 -->
+    <motor name="m_nova5joint1" joint="nova5joint1"/>
+    <motor name="m_nova5joint2" joint="nova5joint2"/>
+    <motor name="m_nova5joint3" joint="nova5joint3"/>
+    <motor name="m_nova5joint4" joint="nova5joint4"/>
+    <motor name="m_nova5joint5" joint="nova5joint5"/>
+    <motor name="m_nova5joint6" joint="nova5joint6"/>
+  </actuator>
+
+  <!-- ============ Sensors (handy for debugging) ============ -->
+  <sensor>
+    <jointpos name="q_n2_1" joint="nova2joint1"/>
+    <jointpos name="q_n2_2" joint="nova2joint2"/>
+    <jointpos name="q_n2_3" joint="nova2joint3"/>
+    <jointpos name="q_n2_4" joint="nova2joint4"/>
+    <jointpos name="q_n2_5" joint="nova2joint5"/>
+    <jointpos name="q_n2_6" joint="nova2joint6"/>
+    <jointpos name="q_n5_1" joint="nova5joint1"/>
+    <jointpos name="q_n5_2" joint="nova5joint2"/>
+    <jointpos name="q_n5_3" joint="nova5joint3"/>
+    <jointpos name="q_n5_4" joint="nova5joint4"/>
+    <jointpos name="q_n5_5" joint="nova5joint5"/>
+    <jointpos name="q_n5_6" joint="nova5joint6"/>
+  </sensor>
+
+  <!-- ============ Keyframes (poses) ============ -->
+  <keyframe>
+    <!-- Joint order: [nova2joint1..6, nova5joint1..6] -->
+    <key name="home"  qpos="0 0 0 0 0 0   0 0 0 0 0 0"/>
+    <key name="ready" qpos="0 -1.0 1.5 0 1.2 0   3.1416 -1.0 1.5 0 1.2 0"/>
+  </keyframe>
+</mujoco>
+
