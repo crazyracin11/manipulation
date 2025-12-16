@@ -1,1 +1,56 @@
 *.pptx
+
+# Large backup files
+*.tar.gz
+
+# Python cache and build files
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# Jupyter Notebook checkpoints
+.ipynb_checkpoints/
+
+# Virtual environments
+venv/
+env/
+ENV/
+
+# IDE files
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Model checkpoints and logs (can be large)
+checkpoints/
+logs/
+videos/
+
+# Mujoco cache
+.mujoco/
+
+# Temporary files
+tmp/
+temp/
