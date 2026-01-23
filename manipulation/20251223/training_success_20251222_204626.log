@@ -1,0 +1,135 @@
+/root/HW/RL_qizhi-main/PPO-Humanoid/ENTER/envs/BHW/lib/python3.10/site-packages/jax/_src/interpreters/xla.py:119: RuntimeWarning: overflow encountered in cast
+  return np.asarray(x, dtypes.canonicalize_dtype(x.dtype))
+2025-12-22 20:47:54.216937: W external/xla/xla/service/gpu/autotuning/dot_search_space.cc:200] All configs were filtered out because none of them sufficiently match the hints. Maybe the hints set does not contain a good representative set of valid configs?Working around this by using the full hints set instead.
+2025-12-22 20:47:54.217080: W external/xla/xla/service/gpu/autotuning/dot_search_space.cc:200] All configs were filtered out because none of them sufficiently match the hints. Maybe the hints set does not contain a good representative set of valid configs?Working around this by using the full hints set instead.
+2025-12-22 20:47:54.217119: W external/xla/xla/service/gpu/autotuning/dot_search_space.cc:200] All configs were filtered out because none of them sufficiently match the hints. Maybe the hints set does not contain a good representative set of valid configs?Working around this by using the full hints set instead.
+Traceback (most recent call last):
+  File "/root/HW/RL_qizhi-main/manipulation/re-orient_fixed_complete.py", line 463, in train_with_checkpoint_saving
+    inference_fn, params, metrics = train_fn(
+  File "/root/HW/RL_qizhi-main/PPO-Humanoid/ENTER/envs/BHW/lib/python3.10/site-packages/brax/training/agents/ppo/train.py", line 697, in train
+    policy_params_fn(current_step, make_policy, params)
+TypeError: ModelManager.save_model_callback() takes 3 positional arguments but 4 were given
+======================================================================
+MuJoCo Playground Leap Cube Reorient 训练程序
+======================================================================
+======================================================================
+MuJoCo Playground Leap Cube Reorient 完整修复版
+======================================================================
+修复内容：
+  ✓ 保持原有训练参数（8192环境，256批次）
+  ✓ 新增模型权重保存功能
+  ✓ 新增真实控制视频生成
+  ✓ 所有修改都有注释说明
+======================================================================
+
+[第一部分] 环境设置
+------------------------------
+=== 检查和安装Python依赖包 ===
+✓ MuJoCo物理模拟引擎 已安装
+✗ MuJoCo JAX加速版本 未安装，尝试安装...
+✓ 安装 mujoco_mjx: 执行成功
+Failed to import warp: No module named 'warp'
+Failed to import mujoco_warp: No module named 'warp'
+✓ Brax强化学习框架 已安装
+✓ 虚拟显示器 已安装
+✗ OpenCV计算机视觉库 未安装，尝试安装...
+✓ 安装 opencv-python: 执行成功
+✓ 媒体处理库 已安装
+✓ 绘图库 已安装
+✗ 模型检查点保存 未安装，尝试安装...
+✓ 安装 orbax-checkpoint: 执行成功
+=== 检查和安装系统依赖包 ===
+正在执行: 更新包列表
+✓ apt update: 执行成功
+✓ 安装FFmpeg 已安装
+✓ 安装OpenGL开发库 已安装
+✓ 安装OpenGL GLX库 已安装
+✓ 安装OSMesa开发库 已安装
+=== 设置运行环境 ===
+✗ 无法检测GPU，使用CPU
+设置虚拟显示器...
+⚠️ 虚拟显示器启动失败: [Errno 2] No such file or directory: 'Xvfb'
+强制使用OSMesa渲染后端（避免EGL配置问题）
+✓ 设置MuJoCo使用OSMesa渲染后端
+✓ 设置PyOpenGL平台为OSMesa
+✓ 配置XLA内存分配器
+✓ 创建模型和视频保存目录
+
+[第二部分] 环境测试
+------------------------------
+======================================================================
+开始完整环境测试...
+======================================================================
+
+--- 测试: 基础库导入 ---
+=== 测试基础库导入 ===
+导入基础Python库...
+✓ 基础Python库导入成功
+✓ numpy配置完成
+✅ 基础库导入 测试通过
+
+--- 测试: MuJoCo安装 ---
+=== 测试MuJoCo安装 ===
+✓ 成功导入mujoco
+测试MuJoCo基本功能...
+✓ MuJoCo模型创建成功
+✓ MuJoCo数据创建成功
+✓ MuJoCo物理引擎测试成功
+✓ MuJoCo安装验证通过
+✅ MuJoCo安装 测试通过
+
+--- 测试: JAX和Brax ---
+=== 测试JAX和Brax ===
+导入JAX相关库...
+✓ JAX导入成功
+导入Brax相关库...
+✓ Brax导入成功
+测试JAX基本功能...
+✓ JAX随机数生成成功，形状: (10,)
+✅ JAX和Brax 测试通过
+
+--- 测试: Playground环境 ---
+=== 测试MuJoCo Playground ===
+导入MuJoCo Playground...
+✓ MuJoCo Playground导入成功
+可用环境数量: 53
+可用的操作环境: ['AlohaHandOver', 'AlohaSinglePegInsertion', 'PandaPickCube', 'PandaPickCubeOrientation', 'PandaPickCubeCartesian', 'PandaOpenCabinet', 'PandaRobotiqPushCube', 'LeapCubeReorient', 'LeapCubeRotateZAxis']
+测试加载环境: LeapCubeReorient
+✓ 环境加载成功
+✓ 获取PPO训练参数成功
+环境配置:
+  环境名称: LeapCubeReorient
+  num_envs: 8192
+  batch_size: 256
+  num_minibatches: 32
+  unroll_length: 40
+✅ Playground环境 测试通过
+
+======================================================================
+测试总结: 4/4 通过
+🎉 所有环境测试通过！可以开始训练。
+======================================================================
+
+[第三部分] 实际训练（带模型保存）
+------------------------------
+======================================================================
+开始执行训练代码...
+======================================================================
+✓ 模型管理器初始化完成，检查点目录: ./checkpoints
+导入训练和绘图库...
+✓ 所有训练库导入成功
+训练配置:
+  环境名称: LeapCubeReorient
+  num_envs: 8192
+  batch_size: 256
+  num_minibatches: 32
+  unroll_length: 40
+  num_timesteps: 200,000,000
+保持原有训练参数，确保训练效果
+开始训练...
+开始训练...
+总训练步数: 200,000,000
+✓ 记录训练数据: 步数=0, 奖励=-8.090
+❌ 训练过程出错: ModelManager.save_model_callback() takes 3 positional arguments but 4 were given
+❌ 训练失败，未获得有效的模型
+❌ 训练失败

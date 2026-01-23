@@ -1,0 +1,296 @@
+Looking in indexes: http://192.168.12.70:9181/repository/pypi-proxy/simple/, https://pypi.ngc.nvidia.com
+Requirement already satisfied: mujoco_mjx in /root/HW/RL_qizhi-main/PPO-Humanoid/ENTER/envs/BHW/lib/python3.10/site-packages (3.4.0)
+Requirement already satisfied: absl-py in /root/HW/RL_qizhi-main/PPO-Humanoid/ENTER/envs/BHW/lib/python3.10/site-packages (from mujoco_mjx) (2.3.1)
+Requirement already satisfied: etils[epath] in /root/HW/RL_qizhi-main/PPO-Humanoid/ENTER/envs/BHW/lib/python3.10/site-packages (from mujoco_mjx) (1.13.0)
+Requirement already satisfied: jax in /root/HW/RL_qizhi-main/PPO-Humanoid/ENTER/envs/BHW/lib/python3.10/site-packages (from mujoco_mjx) (0.6.2)
+Requirement already satisfied: jaxlib in /root/HW/RL_qizhi-main/PPO-Humanoid/ENTER/envs/BHW/lib/python3.10/site-packages (from mujoco_mjx) (0.6.2)
+Requirement already satisfied: mujoco>=3.4.0.dev0 in /root/HW/RL_qizhi-main/PPO-Humanoid/ENTER/envs/BHW/lib/python3.10/site-packages (from mujoco_mjx) (3.4.0)
+Requirement already satisfied: scipy in /root/HW/RL_qizhi-main/PPO-Humanoid/ENTER/envs/BHW/lib/python3.10/site-packages (from mujoco_mjx) (1.15.3)
+Requirement already satisfied: trimesh in /root/HW/RL_qizhi-main/PPO-Humanoid/ENTER/envs/BHW/lib/python3.10/site-packages (from mujoco_mjx) (4.10.1)
+Requirement already satisfied: glfw in /root/HW/RL_qizhi-main/PPO-Humanoid/ENTER/envs/BHW/lib/python3.10/site-packages (from mujoco>=3.4.0.dev0->mujoco_mjx) (2.10.0)
+Requirement already satisfied: numpy in /root/HW/RL_qizhi-main/PPO-Humanoid/ENTER/envs/BHW/lib/python3.10/site-packages (from mujoco>=3.4.0.dev0->mujoco_mjx) (2.2.6)
+Requirement already satisfied: pyopengl in /root/HW/RL_qizhi-main/PPO-Humanoid/ENTER/envs/BHW/lib/python3.10/site-packages (from mujoco>=3.4.0.dev0->mujoco_mjx) (3.1.10)
+Requirement already satisfied: fsspec in /root/HW/RL_qizhi-main/PPO-Humanoid/ENTER/envs/BHW/lib/python3.10/site-packages (from etils[epath]->mujoco_mjx) (2025.12.0)
+Requirement already satisfied: importlib_resources in /root/HW/RL_qizhi-main/PPO-Humanoid/ENTER/envs/BHW/lib/python3.10/site-packages (from etils[epath]->mujoco_mjx) (6.5.2)
+Requirement already satisfied: typing_extensions in /root/HW/RL_qizhi-main/PPO-Humanoid/ENTER/envs/BHW/lib/python3.10/site-packages (from etils[epath]->mujoco_mjx) (4.15.0)
+Requirement already satisfied: zipp in /root/HW/RL_qizhi-main/PPO-Humanoid/ENTER/envs/BHW/lib/python3.10/site-packages (from etils[epath]->mujoco_mjx) (3.23.0)
+Requirement already satisfied: ml_dtypes>=0.5.0 in /root/HW/RL_qizhi-main/PPO-Humanoid/ENTER/envs/BHW/lib/python3.10/site-packages (from jax->mujoco_mjx) (0.5.4)
+Requirement already satisfied: opt_einsum in /root/HW/RL_qizhi-main/PPO-Humanoid/ENTER/envs/BHW/lib/python3.10/site-packages (from jax->mujoco_mjx) (3.4.0)
+WARNING: Running pip as the 'root' user can result in broken permissions and conflicting behaviour with the system package manager, possibly rendering your system unusable. It is recommended to use a virtual environment instead: https://pip.pypa.io/warnings/venv. Use the --root-user-action option if you know what you are doing and want to suppress this warning.
+Looking in indexes: http://192.168.12.70:9181/repository/pypi-proxy/simple/, https://pypi.ngc.nvidia.com
+Requirement already satisfied: playground in /root/HW/RL_qizhi-main/PPO-Humanoid/ENTER/envs/BHW/lib/python3.10/site-packages (0.0.5)
+Requirement already satisfied: brax>=0.12.1 in /root/HW/RL_qizhi-main/PPO-Humanoid/ENTER/envs/BHW/lib/python3.10/site-packages (from playground) (0.13.0)
+Requirement already satisfied: etils in /root/HW/RL_qizhi-main/PPO-Humanoid/ENTER/envs/BHW/lib/python3.10/site-packages (from playground) (1.13.0)
+Requirement already satisfied: flax in /root/HW/RL_qizhi-main/PPO-Humanoid/ENTER/envs/BHW/lib/python3.10/site-packages (from playground) (0.10.7)
+Requirement already satisfied: jax in /root/HW/RL_qizhi-main/PPO-Humanoid/ENTER/envs/BHW/lib/python3.10/site-packages (from playground) (0.6.2)
+Requirement already satisfied: lxml in /root/HW/RL_qizhi-main/PPO-Humanoid/ENTER/envs/BHW/lib/python3.10/site-packages (from playground) (6.0.2)
+Requirement already satisfied: ml-collections in /root/HW/RL_qizhi-main/PPO-Humanoid/ENTER/envs/BHW/lib/python3.10/site-packages (from playground) (1.1.0)
+Requirement already satisfied: mujoco-mjx>=3.2.7 in /root/HW/RL_qizhi-main/PPO-Humanoid/ENTER/envs/BHW/lib/python3.10/site-packages (from playground) (3.4.0)
+Requirement already satisfied: mujoco>=3.2.7 in /root/HW/RL_qizhi-main/PPO-Humanoid/ENTER/envs/BHW/lib/python3.10/site-packages (from playground) (3.4.0)
+Requirement already satisfied: tqdm in /root/HW/RL_qizhi-main/PPO-Humanoid/ENTER/envs/BHW/lib/python3.10/site-packages (from playground) (4.67.1)
+Requirement already satisfied: absl-py in /root/HW/RL_qizhi-main/PPO-Humanoid/ENTER/envs/BHW/lib/python3.10/site-packages (from brax>=0.12.1->playground) (2.3.1)
+Requirement already satisfied: flask in /root/HW/RL_qizhi-main/PPO-Humanoid/ENTER/envs/BHW/lib/python3.10/site-packages (from brax>=0.12.1->playground) (3.1.2)
+Requirement already satisfied: flask-cors in /root/HW/RL_qizhi-main/PPO-Humanoid/ENTER/envs/BHW/lib/python3.10/site-packages (from brax>=0.12.1->playground) (6.0.1)
+Requirement already satisfied: jaxlib>=0.4.6 in /root/HW/RL_qizhi-main/PPO-Humanoid/ENTER/envs/BHW/lib/python3.10/site-packages (from brax>=0.12.1->playground) (0.6.2)
+Requirement already satisfied: jaxopt in /root/HW/RL_qizhi-main/PPO-Humanoid/ENTER/envs/BHW/lib/python3.10/site-packages (from brax>=0.12.1->playground) (0.8.5)
+Requirement already satisfied: jinja2 in /root/HW/RL_qizhi-main/PPO-Humanoid/ENTER/envs/BHW/lib/python3.10/site-packages (from brax>=0.12.1->playground) (3.1.6)
+Requirement already satisfied: numpy in /root/HW/RL_qizhi-main/PPO-Humanoid/ENTER/envs/BHW/lib/python3.10/site-packages (from brax>=0.12.1->playground) (2.2.6)
+Requirement already satisfied: optax in /root/HW/RL_qizhi-main/PPO-Humanoid/ENTER/envs/BHW/lib/python3.10/site-packages (from brax>=0.12.1->playground) (0.2.6)
+Requirement already satisfied: orbax-checkpoint>=0.11.22 in /root/HW/RL_qizhi-main/PPO-Humanoid/ENTER/envs/BHW/lib/python3.10/site-packages (from brax>=0.12.1->playground) (0.11.30)
+Requirement already satisfied: pillow in /root/HW/RL_qizhi-main/PPO-Humanoid/ENTER/envs/BHW/lib/python3.10/site-packages (from brax>=0.12.1->playground) (12.0.0)
+Requirement already satisfied: scipy in /root/HW/RL_qizhi-main/PPO-Humanoid/ENTER/envs/BHW/lib/python3.10/site-packages (from brax>=0.12.1->playground) (1.15.3)
+Requirement already satisfied: tensorboardx in /root/HW/RL_qizhi-main/PPO-Humanoid/ENTER/envs/BHW/lib/python3.10/site-packages (from brax>=0.12.1->playground) (2.6)
+Requirement already satisfied: trimesh in /root/HW/RL_qizhi-main/PPO-Humanoid/ENTER/envs/BHW/lib/python3.10/site-packages (from brax>=0.12.1->playground) (4.10.1)
+Requirement already satisfied: typing-extensions in /root/HW/RL_qizhi-main/PPO-Humanoid/ENTER/envs/BHW/lib/python3.10/site-packages (from brax>=0.12.1->playground) (4.15.0)
+Requirement already satisfied: ml_dtypes>=0.5.0 in /root/HW/RL_qizhi-main/PPO-Humanoid/ENTER/envs/BHW/lib/python3.10/site-packages (from jax->playground) (0.5.4)
+Requirement already satisfied: opt_einsum in /root/HW/RL_qizhi-main/PPO-Humanoid/ENTER/envs/BHW/lib/python3.10/site-packages (from jax->playground) (3.4.0)
+Requirement already satisfied: glfw in /root/HW/RL_qizhi-main/PPO-Humanoid/ENTER/envs/BHW/lib/python3.10/site-packages (from mujoco>=3.2.7->playground) (2.10.0)
+Requirement already satisfied: pyopengl in /root/HW/RL_qizhi-main/PPO-Humanoid/ENTER/envs/BHW/lib/python3.10/site-packages (from mujoco>=3.2.7->playground) (3.1.10)
+Requirement already satisfied: msgpack in /root/HW/RL_qizhi-main/PPO-Humanoid/ENTER/envs/BHW/lib/python3.10/site-packages (from orbax-checkpoint>=0.11.22->brax>=0.12.1->playground) (1.1.2)
+Requirement already satisfied: pyyaml in /root/HW/RL_qizhi-main/PPO-Humanoid/ENTER/envs/BHW/lib/python3.10/site-packages (from orbax-checkpoint>=0.11.22->brax>=0.12.1->playground) (6.0.3)
+Requirement already satisfied: tensorstore>=0.1.74 in /root/HW/RL_qizhi-main/PPO-Humanoid/ENTER/envs/BHW/lib/python3.10/site-packages (from orbax-checkpoint>=0.11.22->brax>=0.12.1->playground) (0.1.78)
+Requirement already satisfied: nest_asyncio in /root/HW/RL_qizhi-main/PPO-Humanoid/ENTER/envs/BHW/lib/python3.10/site-packages (from orbax-checkpoint>=0.11.22->brax>=0.12.1->playground) (1.6.0)
+Requirement already satisfied: aiofiles in /root/HW/RL_qizhi-main/PPO-Humanoid/ENTER/envs/BHW/lib/python3.10/site-packages (from orbax-checkpoint>=0.11.22->brax>=0.12.1->playground) (25.1.0)
+Requirement already satisfied: protobuf in /root/HW/RL_qizhi-main/PPO-Humanoid/ENTER/envs/BHW/lib/python3.10/site-packages (from orbax-checkpoint>=0.11.22->brax>=0.12.1->playground) (3.20.3)
+Requirement already satisfied: humanize in /root/HW/RL_qizhi-main/PPO-Humanoid/ENTER/envs/BHW/lib/python3.10/site-packages (from orbax-checkpoint>=0.11.22->brax>=0.12.1->playground) (4.14.0)
+Requirement already satisfied: simplejson>=3.16.0 in /root/HW/RL_qizhi-main/PPO-Humanoid/ENTER/envs/BHW/lib/python3.10/site-packages (from orbax-checkpoint>=0.11.22->brax>=0.12.1->playground) (3.20.2)
+Requirement already satisfied: psutil in /root/HW/RL_qizhi-main/PPO-Humanoid/ENTER/envs/BHW/lib/python3.10/site-packages (from orbax-checkpoint>=0.11.22->brax>=0.12.1->playground) (7.0.0)
+Requirement already satisfied: fsspec in /root/HW/RL_qizhi-main/PPO-Humanoid/ENTER/envs/BHW/lib/python3.10/site-packages (from etils[epath,epy]->orbax-checkpoint>=0.11.22->brax>=0.12.1->playground) (2025.12.0)
+Requirement already satisfied: importlib_resources in /root/HW/RL_qizhi-main/PPO-Humanoid/ENTER/envs/BHW/lib/python3.10/site-packages (from etils[epath,epy]->orbax-checkpoint>=0.11.22->brax>=0.12.1->playground) (6.5.2)
+Requirement already satisfied: zipp in /root/HW/RL_qizhi-main/PPO-Humanoid/ENTER/envs/BHW/lib/python3.10/site-packages (from etils[epath,epy]->orbax-checkpoint>=0.11.22->brax>=0.12.1->playground) (3.23.0)
+Requirement already satisfied: blinker>=1.9.0 in /root/HW/RL_qizhi-main/PPO-Humanoid/ENTER/envs/BHW/lib/python3.10/site-packages (from flask->brax>=0.12.1->playground) (1.9.0)
+Requirement already satisfied: click>=8.1.3 in /root/HW/RL_qizhi-main/PPO-Humanoid/ENTER/envs/BHW/lib/python3.10/site-packages (from flask->brax>=0.12.1->playground) (8.3.1)
+Requirement already satisfied: itsdangerous>=2.2.0 in /root/HW/RL_qizhi-main/PPO-Humanoid/ENTER/envs/BHW/lib/python3.10/site-packages (from flask->brax>=0.12.1->playground) (2.2.0)
+Requirement already satisfied: markupsafe>=2.1.1 in /root/HW/RL_qizhi-main/PPO-Humanoid/ENTER/envs/BHW/lib/python3.10/site-packages (from flask->brax>=0.12.1->playground) (3.0.3)
+Requirement already satisfied: werkzeug>=3.1.0 in /root/HW/RL_qizhi-main/PPO-Humanoid/ENTER/envs/BHW/lib/python3.10/site-packages (from flask->brax>=0.12.1->playground) (3.1.4)
+Requirement already satisfied: rich>=11.1 in /root/HW/RL_qizhi-main/PPO-Humanoid/ENTER/envs/BHW/lib/python3.10/site-packages (from flax->playground) (13.9.4)
+Requirement already satisfied: treescope>=0.1.7 in /root/HW/RL_qizhi-main/PPO-Humanoid/ENTER/envs/BHW/lib/python3.10/site-packages (from flax->playground) (0.1.10)
+Requirement already satisfied: markdown-it-py>=2.2.0 in /root/HW/RL_qizhi-main/PPO-Humanoid/ENTER/envs/BHW/lib/python3.10/site-packages (from rich>=11.1->flax->playground) (4.0.0)
+Requirement already satisfied: pygments<3.0.0,>=2.13.0 in /root/HW/RL_qizhi-main/PPO-Humanoid/ENTER/envs/BHW/lib/python3.10/site-packages (from rich>=11.1->flax->playground) (2.19.2)
+Requirement already satisfied: mdurl~=0.1 in /root/HW/RL_qizhi-main/PPO-Humanoid/ENTER/envs/BHW/lib/python3.10/site-packages (from markdown-it-py>=2.2.0->rich>=11.1->flax->playground) (0.1.2)
+Requirement already satisfied: chex>=0.1.87 in /root/HW/RL_qizhi-main/PPO-Humanoid/ENTER/envs/BHW/lib/python3.10/site-packages (from optax->brax>=0.12.1->playground) (0.1.90)
+Requirement already satisfied: toolz>=0.9.0 in /root/HW/RL_qizhi-main/PPO-Humanoid/ENTER/envs/BHW/lib/python3.10/site-packages (from chex>=0.1.87->optax->brax>=0.12.1->playground) (1.1.0)
+Requirement already satisfied: packaging in /root/HW/RL_qizhi-main/PPO-Humanoid/ENTER/envs/BHW/lib/python3.10/site-packages (from tensorboardx->brax>=0.12.1->playground) (25.0)
+WARNING: Running pip as the 'root' user can result in broken permissions and conflicting behaviour with the system package manager, possibly rendering your system unusable. It is recommended to use a virtual environment instead: https://pip.pypa.io/warnings/venv. Use the --root-user-action option if you know what you are doing and want to suppress this warning.
+/root/HW/RL_qizhi-main/PPO-Humanoid/ENTER/envs/BHW/lib/python3.10/site-packages/jax/_src/interpreters/xla.py:119: RuntimeWarning: overflow encountered in cast
+  return np.asarray(x, dtypes.canonicalize_dtype(x.dtype))
+2025-12-19 15:46:21.381087: W external/xla/xla/service/gpu/autotuning/dot_search_space.cc:200] All configs were filtered out because none of them sufficiently match the hints. Maybe the hints set does not contain a good representative set of valid configs?Working around this by using the full hints set instead.
+2025-12-19 15:46:21.381217: W external/xla/xla/service/gpu/autotuning/dot_search_space.cc:200] All configs were filtered out because none of them sufficiently match the hints. Maybe the hints set does not contain a good representative set of valid configs?Working around this by using the full hints set instead.
+2025-12-19 15:46:21.381236: W external/xla/xla/service/gpu/autotuning/dot_search_space.cc:200] All configs were filtered out because none of them sufficiently match the hints. Maybe the hints set does not contain a good representative set of valid configs?Working around this by using the full hints set instead.
+2025-12-19 15:47:40.026102: W external/xla/xla/service/gpu/autotuning/dot_search_space.cc:200] All configs were filtered out because none of them sufficiently match the hints. Maybe the hints set does not contain a good representative set of valid configs?Working around this by using the full hints set instead.
+2025-12-19 15:47:40.026663: W external/xla/xla/service/gpu/autotuning/dot_search_space.cc:200] All configs were filtered out because none of them sufficiently match the hints. Maybe the hints set does not contain a good representative set of valid configs?Working around this by using the full hints set instead.
+2025-12-19 15:47:40.026784: W external/xla/xla/service/gpu/autotuning/dot_search_space.cc:200] All configs were filtered out because none of them sufficiently match the hints. Maybe the hints set does not contain a good representative set of valid configs?Working around this by using the full hints set instead.
+Traceback (most recent call last):
+  File "/root/HW/RL_qizhi-main/manipulation/re-orient_notebook.py", line 480, in main
+    json.dump(dict(metrics), f, indent=2)
+  File "/root/HW/RL_qizhi-main/PPO-Humanoid/ENTER/envs/BHW/lib/python3.10/json/__init__.py", line 179, in dump
+    for chunk in iterable:
+  File "/root/HW/RL_qizhi-main/PPO-Humanoid/ENTER/envs/BHW/lib/python3.10/json/encoder.py", line 431, in _iterencode
+    yield from _iterencode_dict(o, _current_indent_level)
+  File "/root/HW/RL_qizhi-main/PPO-Humanoid/ENTER/envs/BHW/lib/python3.10/json/encoder.py", line 405, in _iterencode_dict
+    yield from chunks
+  File "/root/HW/RL_qizhi-main/PPO-Humanoid/ENTER/envs/BHW/lib/python3.10/json/encoder.py", line 438, in _iterencode
+    o = _default(o)
+  File "/root/HW/RL_qizhi-main/PPO-Humanoid/ENTER/envs/BHW/lib/python3.10/json/encoder.py", line 179, in default
+    raise TypeError(f'Object of type {o.__class__.__name__} '
+TypeError: Object of type ArrayImpl is not JSON serializable
+Configuring headless environment...
+================================================================================
+LEAP CUBE REORIENT TRAINING - CONVERTED FROM JUPYTER NOTEBOOK
+================================================================================
+Installing dependencies...
+✓ mujoco already installed
+Installing mujoco_mjx...
+✓ mujoco_mjx installed successfully
+Failed to import warp: No module named 'warp'
+Failed to import mujoco_warp: No module named 'warp'
+✓ brax already installed
+✓ pyvirtualdisplay already installed
+✓ opencv-python already installed
+Installing playground...
+✓ playground installed successfully
+
+Checking graphics packages...
+Found 17 graphics-related packages
+
+============================================================
+CELL 8: NVIDIA AND MUJOCO CONFIGURATION
+============================================================
+Setting up NVIDIA ICD configuration...
+✅ GPU detected
+|   0  NVIDIA H200                    On  |   00000000:5D:00.0 Off |                    0 |
+✓ NVIDIA ICD configuration already exists
+Configuring MuJoCo rendering backend...
+✅ MuJoCo working with disabled rendering
+Configuring XLA flags for GPU optimization...
+✓ XLA flags configured for Triton GEMM
+Checking for FFmpeg...
+✓ FFmpeg already available
+
+Checking MuJoCo installation...
+✅ MuJoCo installation successful
+
+============================================================
+CELL 11: IMPORT PACKAGES FOR PLOTTING
+============================================================
+✅ Matplotlib imported (headless mode)
+✅ NumPy imported and configured
+
+============================================================
+CELL 12: IMPORT MUJOCO, MJX, AND BRAX
+============================================================
+✅ MediaPy imported successfully
+
+============================================================
+CELL 13: MUJOCO PLAYGROUND IMPORT
+============================================================
+✅ MuJoCo playground imported successfully
+Available manipulation environments:
+  - AlohaHandOver
+  - AlohaSinglePegInsertion
+  - PandaPickCube
+  - PandaPickCubeOrientation
+  - PandaPickCubeCartesian
+  - PandaOpenCabinet
+  - PandaRobotiqPushCube
+  - LeapCubeReorient
+  - LeapCubeRotateZAxis
+
+============================================================
+CELL 16: LOAD LEAPCUBEREORIENT ENVIRONMENT
+============================================================
+✅ Loaded environment: LeapCubeReorient
+
+============================================================
+CELL 17: ENVIRONMENT CONFIGURATION
+============================================================
+Environment configuration:
+action_repeat: 1
+action_scale: 0.5
+ctrl_dt: 0.05
+ema_alpha: 1.0
+episode_length: 1000
+history_len: 1
+obs_noise:
+  level: 1.0
+  random_ori_injection_prob: 0.0
+  scales:
+    cube_ori: 0.1
+    cube_pos: 0.02
+    joint_pos: 0.05
+pert_config:
+  angular_velocity_pert:
+  - 0.0
+  - 0.5
+  enable: false
+  linear_velocity_pert:
+  - 0.0
+  - 3.0
+  pert_duration_steps:
+  - 1
+  - 100
+  pert_wait_steps:
+  - 60
+  - 150
+reward_config:
+  scales:
+    action_rate: -0.001
+    energy: -0.001
+    hand_pose: -0.5
+    joint_vel: 0.0
+    orientation: 5.0
+    position: 0.5
+    termination: -100.0
+  success_reward: 100.0
+sim_dt: 0.01
+success_threshold: 0.1
+
+
+============================================================
+CELL 19: TRAIN POLICY SETUP
+============================================================
+Original configuration:
+  num_envs: 8192
+  batch_size: 256
+  num_minibatches: 32
+  unroll_length: 40
+
+⚠️ CPU detected - Using conservative settings
+
+Final configuration:
+  num_envs: 1024
+  batch_size: 128
+  num_minibatches: 16
+  unroll_length: 20
+
+Setting up training pipeline...
+
+============================================================
+CELL 20: EXECUTE TRAINING
+============================================================
+Warning: Could not log progress to file: Object of type ArrayImpl is not JSON serializable
+[0:01:58.970075] Step 0: Reward = -8.283 ± 7.715
+  Training plot saved: training_progress_0.png
+Warning: Could not log progress to file: Object of type ArrayImpl is not JSON serializable
+[0:05:17.627120] Step 10526720: Reward = 147.304 ± 58.708
+  Training plot saved: training_progress_10526720.png
+Warning: Could not log progress to file: Object of type ArrayImpl is not JSON serializable
+[0:07:39.619942] Step 21053440: Reward = 138.228 ± 56.573
+  Training plot saved: training_progress_21053440.png
+Warning: Could not log progress to file: Object of type ArrayImpl is not JSON serializable
+[0:10:01.329504] Step 31580160: Reward = 154.431 ± 60.753
+  Training plot saved: training_progress_31580160.png
+Warning: Could not log progress to file: Object of type ArrayImpl is not JSON serializable
+[0:12:22.579748] Step 42106880: Reward = 147.146 ± 71.462
+  Training plot saved: training_progress_42106880.png
+Warning: Could not log progress to file: Object of type ArrayImpl is not JSON serializable
+[0:14:43.518488] Step 52633600: Reward = 162.960 ± 63.862
+  Training plot saved: training_progress_52633600.png
+Warning: Could not log progress to file: Object of type ArrayImpl is not JSON serializable
+[0:17:04.269255] Step 63160320: Reward = 152.766 ± 69.357
+  Training plot saved: training_progress_63160320.png
+Warning: Could not log progress to file: Object of type ArrayImpl is not JSON serializable
+[0:19:24.946462] Step 73687040: Reward = 137.989 ± 66.354
+  Training plot saved: training_progress_73687040.png
+Warning: Could not log progress to file: Object of type ArrayImpl is not JSON serializable
+[0:21:45.326703] Step 84213760: Reward = 169.018 ± 68.269
+  Training plot saved: training_progress_84213760.png
+Warning: Could not log progress to file: Object of type ArrayImpl is not JSON serializable
+[0:24:06.593587] Step 94740480: Reward = 151.829 ± 65.993
+  Training plot saved: training_progress_94740480.png
+Warning: Could not log progress to file: Object of type ArrayImpl is not JSON serializable
+[0:26:26.995286] Step 105267200: Reward = 159.798 ± 75.841
+  Training plot saved: training_progress_105267200.png
+Warning: Could not log progress to file: Object of type ArrayImpl is not JSON serializable
+[0:28:47.455448] Step 115793920: Reward = 160.372 ± 51.833
+  Training plot saved: training_progress_115793920.png
+Warning: Could not log progress to file: Object of type ArrayImpl is not JSON serializable
+[0:31:08.145302] Step 126320640: Reward = 142.735 ± 63.502
+  Training plot saved: training_progress_126320640.png
+Warning: Could not log progress to file: Object of type ArrayImpl is not JSON serializable
+[0:33:45.304928] Step 136847360: Reward = 157.187 ± 65.533
+  Training plot saved: training_progress_136847360.png
+Warning: Could not log progress to file: Object of type ArrayImpl is not JSON serializable
+[0:37:16.713747] Step 147374080: Reward = 150.178 ± 66.741
+  Training plot saved: training_progress_147374080.png
+Warning: Could not log progress to file: Object of type ArrayImpl is not JSON serializable
+[0:40:48.980889] Step 157900800: Reward = 158.288 ± 60.205
+  Training plot saved: training_progress_157900800.png
+Warning: Could not log progress to file: Object of type ArrayImpl is not JSON serializable
+[0:44:23.599294] Step 168427520: Reward = 158.901 ± 72.879
+  Training plot saved: training_progress_168427520.png
+Warning: Could not log progress to file: Object of type ArrayImpl is not JSON serializable
+[0:47:57.008861] Step 178954240: Reward = 147.575 ± 62.647
+  Training plot saved: training_progress_178954240.png
+Warning: Could not log progress to file: Object of type ArrayImpl is not JSON serializable
+[0:51:32.819484] Step 189480960: Reward = 158.747 ± 84.325
+  Training plot saved: training_progress_189480960.png
+Warning: Could not log progress to file: Object of type ArrayImpl is not JSON serializable
+[0:55:04.713382] Step 200007680: Reward = 156.905 ± 79.655
+  Training plot saved: training_progress_200007680.png
+time to jit: 0:01:58.970075
+time to train: 0:53:05.743307
+Saving model to: leap_cube_reorient_model_20251219_164030
+❌ Training failed: Object of type ArrayImpl is not JSON serializable
+
+❌ Script execution failed

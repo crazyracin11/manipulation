@@ -4,142 +4,186 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project Overview
 
-This is a comprehensive reinforcement learning research project focused on **humanoid robot control using Proximal Policy Optimization (PPO)**. The project combines multiple RL algorithms and environments for experimentation, with particular emphasis on humanoid locomotion and dexterous manipulation tasks.
+This is a comprehensive reinforcement learning research project focused on **humanoid robot control using Proximal Policy Optimization (PPO)** and **dexterous manipulation using MuJoCo Playground**. The project combines multiple RL algorithms and environments for experimentation.
 
 ## Common Development Commands
 
 ### Environment Setup
 ```bash
-# Install dependencies
+# Install core dependencies
 pip install -r requirement.txt
 
-# Install Mujoco for humanoid simulation
-pip install gymnasium[mujoco]
+# For humanoid training (PyTorch-based)
+pip install gymnasium[mujoco] torch torchvision tensorboardX
 
-# For manipulation tasks with MuJoCo playground
-pip install mujoco mujoco_mjx brax
-pip install pyvirtualdisplay opencv-python
+# For manipulation tasks (JAX/Brax-based)
+pip install mujoco mujoco_mjx brax mediapy
+pip install opencv-python pyvirtualdisplay orbax-checkpoint
 ```
 
-### Training and Testing
+### PPO-Humanoid Training
 ```bash
-# Train PPO on humanoid (main implementation)
+# The main PPO implementation is in the PPO-Humanoid subdirectory
+cd PPO-Humanoid
+pip install -r req.txt
+
+# Train PPO on Humanoid-v5
 python train_ppo.py
 
 # Train with custom hyperparameters
 python train_ppo.py --n-envs 64 --n-epochs 2000 --learning-rate 2e-4
 
-# Test pre-trained model
-python test_ppo.py
-
-# PPO-Humanoid variant training
-cd PPO-Humanoid
-python train_ppo.py
+# Test pre-trained model (model.pt in PPO-Humanoid directory)
 python test_ppo.py
 
 # Monitor training progress
 tensorboard --logdir "logs"
 ```
 
-### GPU Acceleration
-The project automatically detects CUDA availability. Training requires GPU for reasonable performance:
-- Mixed precision training with `torch.amp.autocast`
-- Supports multiple parallel environments for efficient data collection
+### Manipulation Tasks (JAX/Brax)
+```bash
+# Main manipulation training script
+python manipulation/re-orient.py
+
+# Alternative scripts with different features
+python manipulation/re-orient_fixed_complete.py  # Has checkpoint saving
+python manipulation/quick_demo_training.py        # Quick short training
+python manipulation/final_demo.py                 # Generate demo video
+```
 
 ## Architecture Overview
 
-### Core PPO Implementation Structure
+### Two Separate Implementations
+
+This project contains **two separate PPO implementations**:
+
+#### 1. PPO-Humanoid (PyTorch-based)
+- Location: `PPO-Humanoid/` subdirectory
+- Framework: PyTorch + Gymnasium
+- Purpose: Humanoid locomotion in MuJoCo
+- Files:
+  - `train_ppo.py`: Main training script
+  - `test_ppo.py`: Evaluation script
+  - `lib/agent_ppo.py`: Actor-critic networks
+  - `lib/buffer_ppo.py`: Experience replay with GAE
+  - `lib/utils.py`: Utilities and argument parsing
+
+#### 2. Manipulation (JAX/Brax-based)
+- Location: `manipulation/` subdirectory
+- Framework: JAX + Brax + MuJoCo Playground
+- Purpose: Dexterous hand manipulation (LeapCubeReorient)
+- Key environment: `LeapCubeReorient` - robotic hand reorienting a cube
+- Uses `manipulation_params.brax_ppo_config()` for configuration
+
+### PPO-Humanoid Architecture
 ```
-lib/
-├── agent_ppo.py          # Actor-critic networks with PPO logic
-├── buffer_ppo.py         # Experience replay with GAE advantage computation
-└── utils.py              # Hyperparameter parsing, environment setup, video logging
+PPO-Humanoid/
+├── train_ppo.py          # Main training loop
+├── test_ppo.py           # Evaluation with video rendering
+├── lib/
+│   ├── agent_ppo.py      # Actor-critic networks (3-layer MLP, 512 units)
+│   ├── buffer_ppo.py     # Trajectory storage with GAE advantage computation
+│   └── utils.py          # Argument parsing, environment setup, video logging
+├── logs/                 # TensorBoard event files
+├── checkpoints/          # Model state dicts (best.pt, last.pt)
+└── model.pt              # Pre-trained checkpoint (~5.7MB)
 ```
 
-**Key Architectural Patterns:**
-- **Agent Architecture**: Shared feature extractor with separate policy (actor) and value (critic) heads
-- **Training Loop**: Vectorized environment data collection → batched PPO updates with GAE
-- **Advantage Computation**: Generalized Advantage Estimation (GAE) for variance reduction
-- **Multi-Environment Training**: Synchronous parallel environment stepping for efficiency
+**Key Patterns:**
+- Shared feature extractor with separate policy (actor) and value (critic) heads
+- Gaussian policy with diagonal covariance for continuous actions
+- GAE (Generalized Advantage Estimation) for variance reduction
+- Mixed precision training with `torch.amp.autocast()`
+- Gradient clipping at 1.0, KL divergence early stopping
 
-### PPO Training Algorithm Flow
-1. **Data Collection**: Collect experiences across `n-envs` parallel environments for `n-steps` each
-2. **Advantage Estimation**: Compute returns and advantages using GAE with gamma/gae-lambda parameters
-3. **Policy Update**: Multiple PPO update iterations per batch using clipped surrogate objective
-4. **Monitoring**: TensorBoard logging, periodic video rendering, checkpoint saving
+### Manipulation Architecture
+```
+manipulation/
+├── re-orient.py                 # Main JAX/Brax training script
+├── re-orient_fixed_complete.py  # With checkpoint saving and video generation
+├── quick_demo_training.py       # Short training for quick demos
+├── final_demo.py                # Video generation from trained model
+├── simple_evaluate.py           # Evaluation utilities
+└── *.ipynb                      # Various experiment notebooks
+```
 
-### Environment Variants
-- **Main Project**: General PPO implementation configurable for any Gymnasium environment
-- **PPO-Humanoid**: Specialized for Humanoid-v5 with pre-trained model checkpoint (`model.pt`)
-- **Manipulation**: Dexterous hand manipulation using MuJoCo Playground (LeapCubeReorient)
-- **Experiment Notebooks**: Algorithm comparisons (Policy Gradient, SAC) across various environments
+**Key Patterns:**
+- Uses `from mujoco_playground.config import manipulation_params`
+- `ppo_params = manipulation_params.brax_ppo_config(env_name)`
+- Returns `make_inference_fn, params, metrics` from training
+- For video generation: use `make_inference_fn(state.obs, act_rng)` directly (not wrapped)
+- Environment rendering: `env.render(rollout[::render_every])`
 
-## Key Configuration Parameters
+## Training Hyperparameters
 
-### Training Hyperparameters (lib/utils.py)
-- `--n-envs`: Number of parallel environments (default: 32)
-- `--n-epochs`: Total training epochs (default: 1000)
+### PPO-Humanoid (lib/utils.py or command line)
+- `--n-envs`: Parallel environments (default: 32)
+- `--n-epochs`: Total epochs (default: 1000)
 - `--n-steps`: Steps per epoch per environment (default: 2048)
 - `--batch-size`: Training batch size (default: 256)
 - `--learning-rate`: Policy learning rate (default: 1e-4)
 - `--gamma`: Discount factor (default: 0.995)
-- `--gae-lambda`: GAE lambda parameter (default: 0.95)
+- `--gae-lambda`: GAE lambda (default: 0.95)
 - `--clip-ratio`: PPO clipping parameter (default: 0.2)
 
-### Output Structure
-Training creates timestamped directories:
-- `checkpoints/`: Model state dictionaries with optimizer state
-- `logs/`: TensorBoard event files with metrics
-- `videos/`: MP4 recordings of agent performance every `--render-epoch`
+### Manipulation (Brax config)
+- Uses `manipulation_params.brax_ppo_config()` which returns a ConfigDict
+- Modify directly: `ppo_params.num_timesteps = 10_000_000`
+- Common settings: num_envs=128-8192, batch_size=256
+- Environment: `LeapCubeReorient` with episode_length=1000
+
+## Output Structure
+
+### PPO-Humanoid
+- `logs/`: TensorBoard event files
+- `checkpoints/`: best.pt, last.pt (model state dicts)
+- `videos/`: MP4 recordings every --render-epoch
+
+### Manipulation
+- `./videos/`: Generated demonstration videos
+- `./checkpoints/`: Model checkpoints (.npz format)
+- `./training_plots/`: Training progress charts
 
 ## Technology Stack
 
-### Core Dependencies
-- **PyTorch**: Neural networks and automatic differentiation
-- **Gymnasium**: RL environment interface with MuJoCo physics
-- **TensorBoardX**: Training metrics visualization
-- **OpenCV**: Video rendering and processing
-- **DM Control**: Additional RL environments for experimentation
+### PPO-Humanoid
+- **PyTorch**: Neural networks and autograd
+- **Gymnasium**: RL environment interface
+- **MuJoCo**: Physics simulation
+- **TensorBoardX**: Metrics visualization
+- **OpenCV**: Video rendering
 
-### Manipulation Extension
-- **MuJoCo/MJX**: High-performance physics simulation with JAX compilation
-- **Brax**: JAX-based RL framework for accelerated simulation
+### Manipulation
+- **JAX**: JIT compilation and autograd
+- **Brax**: JAX-based RL framework
+- **MuJoCo/MJX**: Physics simulation with JAX acceleration
 - **MuJoCo Playground**: Specialized manipulation environments
+- **Mediapy**: Video generation
 
-## Important Implementation Details
+## Important Implementation Notes
 
-### Mixed Precision Training
-The implementation uses NVIDIA's automatic mixed precision (AMP) for memory efficiency:
-- `torch.amp.autocast()` for forward passes
-- GradScaler for gradient scaling and optimizer stepping
-- Significant GPU memory savings for large batch training
-
-### Gradient Clipping and KL Divergence
-- Gradient norm clipping at 1.0 to prevent training instability
-- KL divergence monitoring with early stopping at `--target-kl` threshold
-- Entropy regularization via `--ent-coef` for exploration
+### Mixed Precision Training (PPO-Humanoid)
+- Uses `torch.amp.autocast()` for forward passes
+- GradScaler for gradient scaling
+- Significant GPU memory savings
 
 ### Environment Vectorization
-Uses Gymnasium's `AsyncVectorEnv` for parallel environment stepping, providing:
-- Efficient data collection on multi-core systems
-- Deterministic behavior across training runs
-- Easy scaling of environment count based on available compute
+- PPO-Humanoid: `Gymnasium.AsyncVectorEnv`
+- Manipulation: Built-in Brax vectorization
 
-## File Organization Patterns
+### Video Generation (Manipulation)
+When generating videos from trained models in JAX/Brax:
+1. The `inference_fn` returned from training already has params baked in
+2. Use directly: `ctrl, _ = jit_inference(state.obs, act_rng)`
+3. Use original environment (not wrapped) for single-rollout: `jit_reset = jax.jit(env.reset)`
+4. Do NOT wrap inference_fn again with params
 
-### Modular Training Scripts
-Each algorithm implementation follows consistent structure:
-- `train_<algorithm>.py`: Main training loop with argument parsing
-- `test_<algorithm>.py`: Evaluation script with video rendering
-- `lib/agent_<algorithm>.py`: Core algorithm implementation
-- `lib/buffer_<algorithm>.py`: Experience replay/Buffer logic
-- `lib/utils.py`: Shared utilities and environment wrappers
+### Checkpoint Saving (Manipulation)
+- Use `orbax-checkpoint` for reliable saving
+- Convert JAX params to dict format before saving
+- Checkpoint paths must be absolute paths
 
-### Experiment Notebooks
-Jupyter notebooks in root directory contain:
-- Algorithm tutorials and comparisons
-- Environment-specific experiments
-- Visualization and analysis tools
-- Reference implementations for different RL algorithms
+## Pre-trained Models
 
-This codebase is designed for both research experimentation and production training, with comprehensive logging, checkpointing, and visualization capabilities built into the training pipeline.
+- `PPO-Humanoid/model.pt`: Pre-trained Humanoid-v5 model (~1000 epochs)
+- `checkpoints/model_step_200000000.npz`: Manipulation model (200M steps, reward=110)

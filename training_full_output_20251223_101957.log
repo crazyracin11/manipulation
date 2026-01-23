@@ -1,0 +1,218 @@
+/root/HW/RL_qizhi-main/PPO-Humanoid/ENTER/envs/BHW/lib/python3.10/site-packages/jax/_src/interpreters/xla.py:119: RuntimeWarning: overflow encountered in cast
+  return np.asarray(x, dtypes.canonicalize_dtype(x.dtype))
+2025-12-23 10:21:33.992297: W external/xla/xla/service/gpu/autotuning/dot_search_space.cc:200] All configs were filtered out because none of them sufficiently match the hints. Maybe the hints set does not contain a good representative set of valid configs?Working around this by using the full hints set instead.
+2025-12-23 10:21:33.992378: W external/xla/xla/service/gpu/autotuning/dot_search_space.cc:200] All configs were filtered out because none of them sufficiently match the hints. Maybe the hints set does not contain a good representative set of valid configs?Working around this by using the full hints set instead.
+2025-12-23 10:21:33.992404: W external/xla/xla/service/gpu/autotuning/dot_search_space.cc:200] All configs were filtered out because none of them sufficiently match the hints. Maybe the hints set does not contain a good representative set of valid configs?Working around this by using the full hints set instead.
+WARNING:absl:[process=0][thread=MainThread][operation_id=1] _SignalingThread.join() waiting for signals ([]) blocking the main thread will slow down blocking save times. This is likely due to main thread calling result() on a CommitFuture.
+WARNING:absl:[process=0][thread=MainThread][operation_id=2] _SignalingThread.join() waiting for signals ([]) blocking the main thread will slow down blocking save times. This is likely due to main thread calling result() on a CommitFuture.
+WARNING:absl:[process=0][thread=MainThread][operation_id=3] _SignalingThread.join() waiting for signals ([]) blocking the main thread will slow down blocking save times. This is likely due to main thread calling result() on a CommitFuture.
+WARNING:absl:[process=0][thread=MainThread][operation_id=4] _SignalingThread.join() waiting for signals ([]) blocking the main thread will slow down blocking save times. This is likely due to main thread calling result() on a CommitFuture.
+WARNING:absl:[process=0][thread=MainThread][operation_id=5] _SignalingThread.join() waiting for signals ([]) blocking the main thread will slow down blocking save times. This is likely due to main thread calling result() on a CommitFuture.
+WARNING:absl:[process=0][thread=MainThread][operation_id=6] _SignalingThread.join() waiting for signals ([]) blocking the main thread will slow down blocking save times. This is likely due to main thread calling result() on a CommitFuture.
+WARNING:absl:[process=0][thread=MainThread][operation_id=7] _SignalingThread.join() waiting for signals ([]) blocking the main thread will slow down blocking save times. This is likely due to main thread calling result() on a CommitFuture.
+WARNING:absl:[process=0][thread=MainThread][operation_id=8] _SignalingThread.join() waiting for signals ([]) blocking the main thread will slow down blocking save times. This is likely due to main thread calling result() on a CommitFuture.
+WARNING:absl:[process=0][thread=MainThread][operation_id=9] _SignalingThread.join() waiting for signals ([]) blocking the main thread will slow down blocking save times. This is likely due to main thread calling result() on a CommitFuture.
+WARNING:absl:[process=0][thread=MainThread][operation_id=10] _SignalingThread.join() waiting for signals ([]) blocking the main thread will slow down blocking save times. This is likely due to main thread calling result() on a CommitFuture.
+WARNING:absl:[process=0][thread=MainThread][operation_id=11] _SignalingThread.join() waiting for signals ([]) blocking the main thread will slow down blocking save times. This is likely due to main thread calling result() on a CommitFuture.
+WARNING:absl:[process=0][thread=MainThread][operation_id=12] _SignalingThread.join() waiting for signals ([]) blocking the main thread will slow down blocking save times. This is likely due to main thread calling result() on a CommitFuture.
+WARNING:absl:[process=0][thread=MainThread][operation_id=13] _SignalingThread.join() waiting for signals ([]) blocking the main thread will slow down blocking save times. This is likely due to main thread calling result() on a CommitFuture.
+WARNING:absl:[process=0][thread=MainThread][operation_id=14] _SignalingThread.join() waiting for signals ([]) blocking the main thread will slow down blocking save times. This is likely due to main thread calling result() on a CommitFuture.
+WARNING:absl:[process=0][thread=MainThread][operation_id=15] _SignalingThread.join() waiting for signals ([]) blocking the main thread will slow down blocking save times. This is likely due to main thread calling result() on a CommitFuture.
+WARNING:absl:[process=0][thread=MainThread][operation_id=16] _SignalingThread.join() waiting for signals ([]) blocking the main thread will slow down blocking save times. This is likely due to main thread calling result() on a CommitFuture.
+WARNING:absl:[process=0][thread=MainThread][operation_id=17] _SignalingThread.join() waiting for signals ([]) blocking the main thread will slow down blocking save times. This is likely due to main thread calling result() on a CommitFuture.
+WARNING:absl:[process=0][thread=MainThread][operation_id=18] _SignalingThread.join() waiting for signals ([]) blocking the main thread will slow down blocking save times. This is likely due to main thread calling result() on a CommitFuture.
+WARNING:absl:[process=0][thread=MainThread][operation_id=19] _SignalingThread.join() waiting for signals ([]) blocking the main thread will slow down blocking save times. This is likely due to main thread calling result() on a CommitFuture.
+jax.errors.SimplifiedTraceback: For simplicity, JAX has removed its internal frames from the traceback of the following exception. Set JAX_TRACEBACK_FILTERING=off to include these.
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/root/HW/RL_qizhi-main/manipulation/re-orient_fixed_complete.py", line 703, in generate_video
+    state = jit_reset(rng)
+  File "/root/HW/RL_qizhi-main/PPO-Humanoid/ENTER/envs/BHW/lib/python3.10/site-packages/mujoco_playground/_src/wrapper.py", line 129, in reset
+    state = self.env.reset(rng)
+  File "/root/HW/RL_qizhi-main/PPO-Humanoid/ENTER/envs/BHW/lib/python3.10/site-packages/brax/envs/wrappers/training.py", line 84, in reset
+    state = self.env.reset(rng)
+  File "/root/HW/RL_qizhi-main/PPO-Humanoid/ENTER/envs/BHW/lib/python3.10/site-packages/brax/envs/wrappers/training.py", line 69, in reset
+    return jax.vmap(self.env.reset)(rng)
+  File "/root/HW/RL_qizhi-main/PPO-Humanoid/ENTER/envs/BHW/lib/python3.10/site-packages/mujoco_playground/_src/manipulation/leap_hand/reorient.py", line 106, in reset
+    rng, goal_rng = jax.random.split(rng)
+  File "/root/HW/RL_qizhi-main/PPO-Humanoid/ENTER/envs/BHW/lib/python3.10/site-packages/jax/_src/random.py", line 293, in split
+    typed_key, wrapped = _check_prng_key("split", key)
+  File "/root/HW/RL_qizhi-main/PPO-Humanoid/ENTER/envs/BHW/lib/python3.10/site-packages/jax/_src/random.py", line 80, in _check_prng_key
+    wrapped_key = prng.random_wrap(key, impl=default_prng_impl())
+  File "/root/HW/RL_qizhi-main/PPO-Humanoid/ENTER/envs/BHW/lib/python3.10/site-packages/jax/_src/prng.py", line 726, in random_wrap
+    _check_prng_key_data(impl, base_arr)
+  File "/root/HW/RL_qizhi-main/PPO-Humanoid/ENTER/envs/BHW/lib/python3.10/site-packages/jax/_src/prng.py", line 133, in _check_prng_key_data
+    raise TypeError("JAX encountered invalid PRNG key data: expected "
+TypeError: JAX encountered invalid PRNG key data: expected key_data.ndim >= 1; got ndim=0
+======================================================================
+MuJoCo Playground Leap Cube Reorient 训练程序
+======================================================================
+======================================================================
+MuJoCo Playground Leap Cube Reorient 完整修复版
+======================================================================
+修复内容：
+  ✓ 保持原有训练参数（8192环境，256批次）
+  ✓ 新增模型权重保存功能
+  ✓ 新增真实控制视频生成
+  ✓ 所有修改都有注释说明
+======================================================================
+
+[第一部分] 环境设置
+------------------------------
+=== 检查和安装Python依赖包 ===
+✓ MuJoCo物理模拟引擎 已安装
+✗ MuJoCo JAX加速版本 未安装，尝试安装...
+✓ 安装 mujoco_mjx: 执行成功
+Failed to import warp: No module named 'warp'
+Failed to import mujoco_warp: No module named 'warp'
+✓ Brax强化学习框架 已安装
+✓ 虚拟显示器 已安装
+✗ OpenCV计算机视觉库 未安装，尝试安装...
+✓ 安装 opencv-python: 执行成功
+✓ 媒体处理库 已安装
+✓ 绘图库 已安装
+✗ 模型检查点保存 未安装，尝试安装...
+✓ 安装 orbax-checkpoint: 执行成功
+=== 检查和安装系统依赖包 ===
+正在执行: 更新包列表
+✓ apt update: 执行成功
+✓ 安装FFmpeg 已安装
+✓ 安装OpenGL开发库 已安装
+✓ 安装OpenGL GLX库 已安装
+✓ 安装OSMesa开发库 已安装
+=== 设置运行环境 ===
+✗ 无法检测GPU，使用CPU
+设置虚拟显示器...
+⚠️ 虚拟显示器启动失败: [Errno 2] No such file or directory: 'Xvfb'
+强制使用OSMesa渲染后端（避免EGL配置问题）
+✓ 设置MuJoCo使用OSMesa渲染后端
+✓ 设置PyOpenGL平台为OSMesa
+✓ 配置XLA内存分配器
+✓ 创建模型和视频保存目录
+
+[第二部分] 环境测试
+------------------------------
+======================================================================
+开始完整环境测试...
+======================================================================
+
+--- 测试: 基础库导入 ---
+=== 测试基础库导入 ===
+导入基础Python库...
+✓ 基础Python库导入成功
+✓ numpy配置完成
+✅ 基础库导入 测试通过
+
+--- 测试: MuJoCo安装 ---
+=== 测试MuJoCo安装 ===
+✓ 成功导入mujoco
+测试MuJoCo基本功能...
+✓ MuJoCo模型创建成功
+✓ MuJoCo数据创建成功
+✓ MuJoCo物理引擎测试成功
+✓ MuJoCo安装验证通过
+✅ MuJoCo安装 测试通过
+
+--- 测试: JAX和Brax ---
+=== 测试JAX和Brax ===
+导入JAX相关库...
+✓ JAX导入成功
+导入Brax相关库...
+✓ Brax导入成功
+测试JAX基本功能...
+✓ JAX随机数生成成功，形状: (10,)
+✅ JAX和Brax 测试通过
+
+--- 测试: Playground环境 ---
+=== 测试MuJoCo Playground ===
+导入MuJoCo Playground...
+✓ MuJoCo Playground导入成功
+可用环境数量: 53
+可用的操作环境: ['AlohaHandOver', 'AlohaSinglePegInsertion', 'PandaPickCube', 'PandaPickCubeOrientation', 'PandaPickCubeCartesian', 'PandaOpenCabinet', 'PandaRobotiqPushCube', 'LeapCubeReorient', 'LeapCubeRotateZAxis']
+测试加载环境: LeapCubeReorient
+✓ 环境加载成功
+✓ 获取PPO训练参数成功
+环境配置:
+  环境名称: LeapCubeReorient
+  num_envs: 8192
+  batch_size: 256
+  num_minibatches: 32
+  unroll_length: 40
+✅ Playground环境 测试通过
+
+======================================================================
+测试总结: 4/4 通过
+🎉 所有环境测试通过！可以开始训练。
+======================================================================
+
+[第三部分] 实际训练（带模型保存）
+------------------------------
+======================================================================
+开始执行训练代码...
+======================================================================
+✓ 模型管理器初始化完成，检查点目录: ./checkpoints
+导入训练和绘图库...
+✓ 所有训练库导入成功
+训练配置:
+  环境名称: LeapCubeReorient
+  num_envs: 8192
+  batch_size: 256
+  num_minibatches: 32
+  unroll_length: 40
+  num_timesteps: 200,000,000
+保持原有训练参数，确保训练效果
+开始训练...
+开始训练...
+总训练步数: 200,000,000
+✓ 记录训练数据: 步数=0, 奖励=-8.163
+✓ 记录训练数据: 步数=10,813,440, 奖励=89.896
+✓ 记录训练数据: 步数=21,626,880, 奖励=102.543
+✓ 记录训练数据: 步数=32,440,320, 奖励=103.621
+✓ 记录训练数据: 步数=43,253,760, 奖励=106.479
+✓ 记录训练数据: 步数=54,067,200, 奖励=108.446
+✓ 记录训练数据: 步数=64,880,640, 奖励=95.210
+✓ 记录训练数据: 步数=75,694,080, 奖励=86.749
+✓ 记录训练数据: 步数=86,507,520, 奖励=86.844
+✓ 记录训练数据: 步数=97,320,960, 奖励=89.496
+✓ 记录训练数据: 步数=108,134,400, 奖励=81.967
+✓ 记录训练数据: 步数=118,947,840, 奖励=84.861
+✓ 记录训练数据: 步数=129,761,280, 奖励=83.423
+✓ 记录训练数据: 步数=140,574,720, 奖励=89.893
+✓ 记录训练数据: 步数=151,388,160, 奖励=106.783
+✓ 记录训练数据: 步数=162,201,600, 奖励=108.714
+✓ 记录训练数据: 步数=173,015,040, 奖励=113.027
+✓ 记录训练数据: 步数=183,828,480, 奖励=109.535
+✓ 记录训练数据: 步数=194,641,920, 奖励=110.829
+✓ 记录训练数据: 步数=205,455,360, 奖励=110.065
+💾 保存模型检查点: 步骤 200,000,000
+⚠️ 参数转换为字典失败，尝试其他方法
+✅ 模型权重已保存: /root/HW/RL_qizhi-main/checkpoints/model_step_200000000.npz
+   参数数量: 1 个
+
+✅ 训练完成！
+训练时间: 00:25:32
+最终奖励: 110.065
+保存的检查点: 2 个
+
+[第四部分] 视频生成
+------------------------------
+🎬 使用训练好的模型生成真实演示视频...
+创建策略推理函数...
+编译推理函数...
+生成演示rollout (1000 步)...
+❌ 视频生成失败: JAX encountered invalid PRNG key data: expected key_data.ndim >= 1; got ndim=0
+
+======================================================================
+🎉 训练和视频生成完成！
+======================================================================
+✅ 模型训练成功（保持原有参数规模）
+✅ 模型权重已保存到 ./checkpoints/
+⚠️  视频生成遇到问题，但模型训练完全成功
+
+📁 输出文件:
+  - 模型权重检查点: ./checkpoints/
+  - 真实控制视频: ./videos/
+  - 训练图表: ./training_plots/
+======================================================================

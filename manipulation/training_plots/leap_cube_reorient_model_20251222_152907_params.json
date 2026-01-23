@@ -1,0 +1,20 @@
+{
+  "timestamp": "20251222_152907",
+  "environment": "LeapCubeReorient",
+  "training_time": "0:45:58.639428",
+  "jit_time": "0:01:58.035377",
+  "final_metrics": {
+    "eval/walltime": "777.8255701065063",
+    "training/sps": "93339.6151114693",
+    "training/walltime": "2051.9539716243744",
+    "eval/epoch_eval_time": "42.681997776031494",
+    "eval/sps": "2998.922418572443"
+  },
+  "training_config": {
+    "num_envs": 8192,
+    "batch_size": 256,
+    "num_minibatches": 32,
+    "unroll_length": 40,
+    "num_timesteps": 200000000
+  }
+}

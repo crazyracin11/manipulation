@@ -1,0 +1,47 @@
+==================================================
+Leap Cube Reorient 训练总结报告
+==================================================
+
+生成时间: 2025-12-22 15:29:07
+训练步数记录: 20 个数据点
+
+训练统计:
+  最高奖励: 475.342
+  最低奖励: -8.520
+  最终奖励: 475.342
+  总训练步数: 205455360
+
+最终指标:
+  eval/walltime: 777.8255701065063
+  training/sps: 93339.6151114693
+  training/walltime: 2051.9539716243744
+  training/entropy_loss: -0.07330784946680069
+  training/policy_loss: -0.027365121990442276
+  training/total_loss: 19.18378448486328
+  training/v_loss: 19.28445816040039
+  eval/episode_reward: 475.34246826171875
+  eval/episode_reward/action_rate: -35.79933166503906
+  eval/episode_reward/energy: -14.564046859741211
+  eval/episode_reward/hand_pose: -1389.0830078125
+  eval/episode_reward/joint_vel: 0.0
+  eval/episode_reward/orientation: 3182.74951171875
+  eval/episode_reward/position: 399.48431396484375
+  eval/episode_reward/success: 3.6875
+  eval/episode_reward/termination: -10.9375
+  eval/episode_steps_since_last_success: 132213.828125
+  eval/episode_success_count: 1709.9609375
+  eval/episode_reward_std: 158.80117797851562
+  eval/episode_reward/action_rate_std: 7.408263683319092
+  eval/episode_reward/energy_std: 3.099604368209839
+  eval/episode_reward/hand_pose_std: 307.67730712890625
+  eval/episode_reward/joint_vel_std: 0.0
+  eval/episode_reward/orientation_std: 746.4684448242188
+  eval/episode_reward/position_std: 88.41860961914062
+  eval/episode_reward/success_std: 1.4456292390823364
+  eval/episode_reward/termination_std: 31.210912704467773
+  eval/episode_steps_since_last_success_std: 65719.6328125
+  eval/episode_success_count_std: 763.3555908203125
+  eval/avg_episode_length: 943.3515625
+  eval/std_episode_length: 195.229736328125
+  eval/epoch_eval_time: 42.681997776031494
+  eval/sps: 2998.922418572443
