@@ -1,194 +1,0 @@
-/root/HW/RL_qizhi-main/PPO-Humanoid/ENTER/envs/BHW/lib/python3.10/site-packages/jax/_src/interpreters/xla.py:119: RuntimeWarning: overflow encountered in cast
-  return np.asarray(x, dtypes.canonicalize_dtype(x.dtype))
-2025-12-22 14:42:10.413195: W external/xla/xla/service/gpu/autotuning/dot_search_space.cc:200] All configs were filtered out because none of them sufficiently match the hints. Maybe the hints set does not contain a good representative set of valid configs?Working around this by using the full hints set instead.
-2025-12-22 14:42:10.413293: W external/xla/xla/service/gpu/autotuning/dot_search_space.cc:200] All configs were filtered out because none of them sufficiently match the hints. Maybe the hints set does not contain a good representative set of valid configs?Working around this by using the full hints set instead.
-2025-12-22 14:42:10.413316: W external/xla/xla/service/gpu/autotuning/dot_search_space.cc:200] All configs were filtered out because none of them sufficiently match the hints. Maybe the hints set does not contain a good representative set of valid configs?Working around this by using the full hints set instead.
-MuJoCo Playground Leap Cube Reorient 训练程序
-============================================================
-
-[第一部分] 环境设置
-------------------------------
-=== 检查和安装Python依赖包 ===
-✓ MuJoCo物理模拟引擎 已安装
-Failed to import warp: No module named 'warp'
-Failed to import mujoco_warp: No module named 'warp'
-✓ MuJoCo JAX加速版本 已安装
-✓ Brax强化学习框架 已安装
-✓ 虚拟显示器 已安装
-✓ OpenCV计算机视觉库 已安装
-✓ 媒体处理库 已安装
-✓ MuJoCo Playground环境 已安装
-=== 检查和安装系统依赖包 ===
-正在执行: 更新包列表
-✓ apt update
-Hit:1 https://mirrors.cqupt.edu.cn/ubuntu jammy InRelease
-Get:2 https://mirrors.cqupt.edu.cn/ubuntu jammy-updates InRelease [128 kB]
-Hit:4 http://security.ubuntu.com/ubuntu jammy-security InRelease
-Get:3 https://mirrors.cqupt.edu.cn/ubuntu jammy-backports InRelease [127 kB]
-Fetched 255 kB in 1s (209 kB/s)
-Reading package lists...
-Building dependency tree...
-Reading state information...
-136 packages can be upgraded. Run 'apt list --upgradable' to see them.
-✓ 安装FFmpeg 已安装
-✓ 安装OpenGL开发库 已安装
-✓ 安装OpenGL GLX库 已安装
-✓ 安装OSMesa开发库 已安装
-=== 设置运行环境 ===
-✓ 检测到NVIDIA GPU
-设置虚拟显示器...
-警告: 虚拟显示器启动失败，继续尝试...
-强制使用OSMesa渲染后端（避免EGL配置问题）
-✓ 设置MuJoCo使用OSMesa渲染后端
-✓ 设置PyOpenGL平台为OSMesa
-✓ 配置XLA使用Triton GEMM
-✓ 设置XLA内存分配器为platform
-
-[第二部分] 环境测试
-------------------------------
-
-============================================================
-开始完整环境测试...
-============================================================
-
---- 测试: 基础库导入 ---
-
-=== 测试基础库导入 ===
-导入基础Python库...
-✓ 基础Python库导入成功
-✓ numpy配置完成
-✅ 基础库导入 测试通过
-
---- 测试: MuJoCo安装 ---
-
-=== 测试MuJoCo安装 ===
-✓ 成功导入mujoco
-测试MuJoCo基本功能...
-✓ MuJoCo模型创建成功
-✓ MuJoCo数据创建成功
-✓ MuJoCo物理引擎测试成功
-✓ MuJoCo安装验证通过
-✅ MuJoCo安装 测试通过
-
---- 测试: JAX和Brax ---
-
-=== 测试JAX和Brax ===
-导入JAX相关库...
-✓ JAX导入成功
-导入Brax相关库...
-✓ Brax导入成功
-测试JAX基本功能...
-✓ JAX随机数生成成功，形状: (10,)
-✅ JAX和Brax 测试通过
-
---- 测试: Playground环境 ---
-
-=== 测试MuJoCo Playground ===
-导入MuJoCo Playground...
-✓ MuJoCo Playground导入成功
-可用的操作环境: ('AlohaHandOver', 'AlohaSinglePegInsertion', 'PandaPickCube', 'PandaPickCubeOrientation', 'PandaPickCubeCartesian', 'PandaOpenCabinet', 'PandaRobotiqPushCube', 'LeapCubeReorient', 'LeapCubeRotateZAxis')
-测试加载环境: LeapCubeReorient
-✓ 环境加载成功
-✓ 获取PPO训练参数成功
-环境配置:
-  环境名称: LeapCubeReorient
-  num_envs: 8192
-  batch_size: 256
-✅ Playground环境 测试通过
-
-============================================================
-测试总结: 4/4 通过
-🎉 所有环境测试通过！可以开始训练。
-============================================================
-
-[第三部分] 实际训练（带图表保存）
-------------------------------
-
-============================================================
-开始执行训练代码...
-============================================================
-✓ 图表保存器初始化完成，保存目录: ./training_plots
-导入绘图和图形包...
-Installing mediapy:
-原始配置:
-  num_envs: 8192
-  batch_size: 256
-  num_minibatches: 32
-  unroll_length: 40
-
-优化后配置:
-  num_envs: 8192
-  batch_size: 256
-  num_minibatches: 32
-  unroll_length: 40
-预期内存减少: ~75%
-开始训练...
-[2K2025-12-22 14:43:19.313011: W external/xla/xla/service/gpu/autotuning/dot_search_space.cc:200] All configs were filtered out because none of them sufficiently match the hints. Maybe the hints set does not contain a good representative set of valid configs?Working around this by using the full hints set instead.
-[2K✓ 记录训练数据: 步数=0, 奖励=-8.520
-Figure(640x480)
-[2K[2K✓ 记录训练数据: 步数=10813440, 奖励=126.623
-Figure(640x480)
-[2K[2K✓ 记录训练数据: 步数=21626880, 奖励=148.039
-Figure(640x480)
-[2K[2K✓ 记录训练数据: 步数=32440320, 奖励=160.525
-Figure(640x480)
-[2K[2K✓ 记录训练数据: 步数=43253760, 奖励=168.855
-Figure(640x480)
-[2K[2K✓ 记录训练数据: 步数=54067200, 奖励=181.237
-Figure(640x480)
-[2K[2K✓ 记录训练数据: 步数=64880640, 奖励=163.039
-Figure(640x480)
-[2K[2K✓ 记录训练数据: 步数=75694080, 奖励=188.887
-Figure(640x480)
-[2K[2K✓ 记录训练数据: 步数=86507520, 奖励=209.271
-Figure(640x480)
-[2K[2K✓ 记录训练数据: 步数=97320960, 奖励=215.952
-Figure(640x480)
-[2K[2K✓ 记录训练数据: 步数=108134400, 奖励=260.333
-Figure(640x480)
-[2K[2K✓ 记录训练数据: 步数=118947840, 奖励=307.064
-Figure(640x480)
-[2K[2K✓ 记录训练数据: 步数=129761280, 奖励=310.789
-Figure(640x480)
-[2K[2K✓ 记录训练数据: 步数=140574720, 奖励=352.048
-Figure(640x480)
-[2K[2K✓ 记录训练数据: 步数=151388160, 奖励=379.059
-Figure(640x480)
-[2K[2K✓ 记录训练数据: 步数=162201600, 奖励=420.408
-Figure(640x480)
-[2K[2K✓ 记录训练数据: 步数=173015040, 奖励=439.190
-Figure(640x480)
-[2K[2K✓ 记录训练数据: 步数=183828480, 奖励=426.474
-Figure(640x480)
-[2K[2K✓ 记录训练数据: 步数=194641920, 奖励=466.111
-Figure(640x480)
-[2K2025-12-22 15:29:13.021490: W external/xla/xla/service/gpu/autotuning/dot_search_space.cc:200] All configs were filtered out because none of them sufficiently match the hints. Maybe the hints set does not contain a good representative set of valid configs?Working around this by using the full hints set instead.
-/root/HW/RL_qizhi-main/PPO-Humanoid/ENTER/envs/BHW/lib/python3.10/site-packages/glfw/__init__.py:917: GLFWError: (65550) b'X11: The DISPLAY environment variable is missing'
-  warnings.warn(message, GLFWError)
-/root/HW/RL_qizhi-main/PPO-Humanoid/ENTER/envs/BHW/lib/python3.10/site-packages/glfw/__init__.py:917: GLFWError: (65537) b'The GLFW library is not initialized'
-  warnings.warn(message, GLFWError)
-Exception ignored in: <function Renderer.__del__ at 0x7f7c2c4bae60>
-Traceback (most recent call last):
-  File "/root/HW/RL_qizhi-main/PPO-Humanoid/ENTER/envs/BHW/lib/python3.10/site-packages/mujoco/renderer.py", line 340, in __del__
-    self.close()
-  File "/root/HW/RL_qizhi-main/PPO-Humanoid/ENTER/envs/BHW/lib/python3.10/site-packages/mujoco/renderer.py", line 328, in close
-    if self._mjr_context:
-AttributeError: 'Renderer' object has no attribute '_mjr_context'
-[2K✓ 记录训练数据: 步数=205455360, 奖励=475.342
-Figure(640x480)
-time to jit: 0:01:58.035377
-time to train: 0:45:58.639428
-
-=== 保存训练图表和数据 ===
-✅ 训练进度图已保存: ./training_plots/training_progress_20251222_152907.png
-❌ 保存训练数据JSON失败: Object of type ArrayImpl is not JSON serializable
-✅ 训练总结报告已保存: ./training_plots/training_summary_20251222_152907.txt
-✅ 模型配置已保存: ./training_plots/leap_cube_reorient_model_20251222_152907_params.json
-尝试生成演示视频...
-⚠️  演示视频生成失败: gladLoadGL error
-这不影响训练结果，模型已成功训练完成
-
-🎉 训练和图表保存完成！
-所有文件保存在: ./training_plots
-
-🎉 训练和图表保存完成！
